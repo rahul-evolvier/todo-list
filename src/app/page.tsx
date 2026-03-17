@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { TodoInput } from '@/components/TodoInput'
 import { TodoList } from '@/components/TodoList'
 import { TodoFilter } from '@/components/TodoFilter'
+import { TodoCount } from '@/components/TodoCount'
 import type { FilterType } from '@/components/TodoFilter'
 import type { Todo } from '@/types/todo'
 
@@ -53,11 +54,14 @@ export default function Home() {
     return true
   })
 
+  const remaining = todos.filter(t => !t.completed).length
+
   return (
     <main>
       <h1>Todo List</h1>
       <TodoInput onAdd={handleAdd} />
       <TodoFilter current={filter} onChange={setFilter} />
+      <TodoCount total={todos.length} remaining={remaining} />
       <TodoList todos={filteredTodos} onToggle={handleToggle} onDelete={handleDelete} onEdit={handleEdit} />
     </main>
   )

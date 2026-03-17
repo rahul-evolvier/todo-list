@@ -1,0 +1,10 @@
+.count {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.remaining {
+  font-weight: 600;
+  color: #333;
+}
