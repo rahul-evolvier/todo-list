@@ -26,19 +26,6 @@ export default function Home() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      if (stored) setTodos(JSON.parse(stored))
-    } catch {
-      // ignore corrupted data
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  }, [todos])
-
   function handleAdd(title: string) {
     const newTodo: Todo = {
       id: crypto.randomUUID(),
