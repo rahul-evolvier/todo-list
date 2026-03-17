@@ -86,6 +86,7 @@ export function TodoItem({ todo, onToggle, onDelete, onEdit }: ITodoItemProps) {
         onClick={handleEditStart}
         className={styles.editButton}
         aria-label={`Edit "${todo.title}"`}
+        style={{ color: '#0070f3', border: '1px solid #0070f3', background: '#e8f0fe', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' }}
       >
         Edit
       </button>
@@ -94,6 +95,7 @@ export function TodoItem({ todo, onToggle, onDelete, onEdit }: ITodoItemProps) {
         onClick={() => onDelete(todo.id)}
         className={styles.deleteButton}
         aria-label={`Delete "${todo.title}"`}
+        style={{ color: '#cc0000', border: '1px solid #cc0000', background: '#ffeeee', padding: '2px 8px', borderRadius: '4px', cursor: 'pointer' }}
       >
         Delete
       </button>
