@@ -1,12 +1,31 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { TodoInput } from '@/components/TodoInput'
 import { TodoList } from '@/components/TodoList'
+import { TodoFilter } from '@/components/TodoFilter'
+import { TodoCount } from '@/components/TodoCount'
+import type { FilterType } from '@/components/TodoFilter'
 import type { Todo } from '@/types/todo'
+
+const STORAGE_KEY = 'todos'
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([])
+  const [filter, setFilter] = useState<FilterType>('all')
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) setTodos(JSON.parse(stored))
+    } catch {
+      // ignore corrupted data
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }, [todos])
 
   function handleAdd(title: string) {
     const newTodo: Todo = {
@@ -29,11 +48,21 @@ export default function Home() {
     setTodos(prev => prev.map(t => t.id === id ? { ...t, title: newTitle } : t))
   }
 
+  const filteredTodos = todos.filter(t => {
+    if (filter === 'active') return !t.completed
+    if (filter === 'completed') return t.completed
+    return true
+  })
+
+  const remaining = todos.filter(t => !t.completed).length
+
   return (
     <main>
       <h1>Todo List</h1>
       <TodoInput onAdd={handleAdd} />
-      <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} onEdit={handleEdit} />
+      <TodoFilter current={filter} onChange={setFilter} />
+      <TodoCount total={todos.length} remaining={remaining} />
+      <TodoList todos={filteredTodos} onToggle={handleToggle} onDelete={handleDelete} onEdit={handleEdit} />
     </main>
   )
 }

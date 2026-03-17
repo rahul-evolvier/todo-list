@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.button {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.button:hover {
+  border-color: #0070f3;
+  color: #0070f3;
+}
+
+.active {
+  background: #0070f3;
+  border-color: #0070f3;
+  color: #fff;
+}
+
+.active:hover {
+  background: #0051a8;
+  border-color: #0051a8;
+  color: #fff;
+}
