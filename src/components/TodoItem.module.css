@@ -1,0 +1,53 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.title {
+  flex: 1;
+  cursor: default;
+}
+
+.title:hover {
+  text-decoration: underline dotted;
+}
+
+.completed .title {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.editInput {
+  flex: 1;
+  min-width: 0;
+  padding: 0.25rem 0.5rem;
+}
+
+.editButton,
+.deleteButton,
+.saveButton,
+.cancelButton {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.deleteButton {
+  color: #c00;
+}
+.deleteButton:hover { color: #900; }
+
+.saveButton {
+  color: #060;
+}
+.saveButton:hover:not(:disabled) { color: #030; }
+.saveButton:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.cancelButton {
+  color: #666;
+}
+.cancelButton:hover { color: #333; }

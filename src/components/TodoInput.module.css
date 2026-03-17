@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  min-width: 0; /* prevents flex overflow on small screens */
+  padding: 0.5rem;
+}
+
+.button {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+}
